@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Pack>
+    <!--
+        PackCode				通讯报文已有编码
+        Desc					通讯报文描述
+        Target					服务方信息id
+        Encoding				通讯报文编码格式
+        Trace					通讯报文缓存标识
+        Root                    根节点
+     -->
+    <PackCode>CPUB002</PackCode>
+    <Desc>文件传输通知</Desc>
+    <Target>socket1</Target>
+    <Encoding>UTF-8</Encoding>
+    <LogFlag>true</LogFlag>
+    <Root>service</Root>
+
+    <!-- 报文长度信息 -->
+    <LengthInfo>
+        <!-- 字段信息 -->
+        <!--
+            Enable					是否启用报文长度字段信息
+            InfoLen					报文长度字段长度
+            SelfFlag				长度信息是否包含本身
+            Format					进制：8进制、10进制、16进制
+         -->
+        <Enable>true</Enable>
+        <InfoLen>8</InfoLen>
+        <SelfFlag>false</SelfFlag>
+        <Format>10</Format>
+        <ReturnLen>8</ReturnLen>
+    </LengthInfo>
+    <!-- 发送报文字段信息 -->
+    <Request>
+        <!--公共报文头-->
+        <Field name="Mac" desc="mac值" loop=""  tag="service/SYS_HEAD/Mac"/>
+        <Field name="MsgId" desc="服务消息ID"  loop=""  tag="service/SYS_HEAD/MsgId"/>
+        <Field name="SourceSysId" desc="服务消息ID"  loop=""  tag="service/SYS_HEAD/SourceSysId"/>
+        <Field name="ConsumerId" desc="服务消息ID"  loop=""  tag="service/SYS_HEAD/ConsumerId"/>
+        <Field name="ServiceCode" desc="请求流水号" loop=""  tag="service/SYS_HEAD/ServiceCode"/>
+        <Field name="ServiceScene" desc="请求流水号" loop=""  tag="service/SYS_HEAD/ServiceScene"/>
+        <Field name="ReplyAdr" desc="请求流水号" loop=""  tag="service/SYS_HEAD/ReplyAdr"/>
+        <Field name="ExtendContent" desc="请求流水号" loop=""  tag="service/SYS_HEAD/ExtendContent"/>
+        <Field name="TranDate" desc="交易日期" loop=""  tag="service/APP_HEAD/TranDate"/>
+        <Field name="TranTime" desc="交易时间" loop=""  tag="service/APP_HEAD/TranTime"/>
+        <Field name="TranTellerNo" desc="交易柜员" loop=""  tag="service/APP_HEAD/TranTellerNo"/>
+        <Field name="TranSeqNo" desc="交易流水号" loop=""  tag="service/APP_HEAD/TranSeqNo"/>
+        <Field name="GlobalSeqNo" desc="全局流水号" loop=""  tag="service/APP_HEAD/GlobalSeqNo"/>
+        <Field name="AuthrTellerNo" desc="授权柜员" loop=""  tag="service/APP_HEAD/AuthrTellerNo"/>
+        <Field name="AuthrPwd" desc="授权密码" loop=""  tag="service/APP_HEAD/AuthrPwd"/>
+        <!--私有域-->
+        <Field name = "PushTm" desc = "推送时间" loop=""  tag = "service/BODY/PushTm"/>
+        <Field name = "BtchNo" desc = "批次号" loop=""  tag = "service/BODY/BtchNo"/>
+        <Field name = "FileNm" desc = "文件名称" loop="list"  tag = "service/BODY/TskArray/FileNm"/>
+        <Field name = "FileTp" desc = "文件类型" loop="list"  tag = "service/BODY/TskArray/FileTp"/>
+        <Field name = "BsnAplyNo" desc = "业务申请编号" loop="list"  tag = "service/BODY/TskArray/BsnAplyNo"/>
+        <Field name = "RcrdNum" desc = "记录数" loop="list"  tag = "service/BODY/TskArray/RcrdNum"/>
+        <Field name = "FmSysInd" desc = "来源系统标志" loop=""  tag = "service/BODY/FmSysInd"/>
+        <Field name = "TrgtSysInd" desc = "目标系统标识" loop=""  tag = "service/BODY/TrgtSysInd"/>
+
+    </Request>
+
+    <!-- 收到的响应 -->
+    <Response>
+        <!--公共报文头-->
+
+        <!--私有域-->
+        <Field name="return" desc="测试返回" loop="list" tag="service/BODY/FileArray/OtptFile"/>
+    </Response>
+</Pack>

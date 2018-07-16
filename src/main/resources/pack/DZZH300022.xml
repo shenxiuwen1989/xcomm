@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Pack>
+    <!--
+        PackCode				通讯报文已有编码
+        Desc					通讯报文描述
+        Target					服务方信息id
+        Encoding				通讯报文编码格式
+        Trace					通讯报文缓存标识
+        Root                    根节点
+     -->
+    <PackCode>DZZH300022</PackCode>
+    <Desc>交易状态查询</Desc>
+    <Target>socket2</Target>
+    <Encoding>GBK</Encoding>
+    <LogFlag>true</LogFlag>
+    <Root>Document</Root>
+
+    <!-- 报文长度信息 -->
+    <LengthInfo>
+        <!-- 字段信息 -->
+        <!--
+            Enable					是否启用报文长度字段信息
+            InfoLen					报文长度字段长度
+            SelfFlag				长度信息是否包含本身
+            Format					进制：8进制、10进制、16进制
+         -->
+        <Enable>true</Enable>
+        <InfoLen>8</InfoLen>
+        <SelfFlag>false</SelfFlag>
+        <Format>10</Format>
+        <ReturnLen>111</ReturnLen>
+    </LengthInfo>
+
+    <!--定长部分字段-->
+    <Constant>
+        <Str name="xmlVer" desc="版本号" len="2" sub=" "/>
+        <Str name="requestsysid" desc="请求方系统简称 " len="4" sub=" "/>
+        <Str name="servicesysid" desc="服务方系统简称" len="4" sub=" "/>
+        <Str name="trancode" desc="服务代码" len="10" sub=" "/>
+        <Str name="msgSendDate" desc="报文发起日期" len="8" sub=" "/>
+        <Str name="msgSendTime" desc="报文发起时间" len="6" sub=" "/>
+        <Str name="msgId" desc="报文消息ID" len="22" sub=" "/>
+        <Str name="msgRefId" desc="报文消息参考号" len="22" sub=" "/>
+        <Str name="direction" desc="报文方向" len="1" sub=" "/>
+        <Str name="reserve" desc="（保留域）" len="20" sub=" "/>
+    </Constant>
+
+    <!-- 发送报文字段信息 -->
+    <Request>
+        <!--公共报文头-->
+        <Field name="firstsysname" desc="第一发起系统的系统简称" loop=""  tag="Document/CommonRequestHeader/firstsysname"/>
+        <Field name="firstsysmemucode" desc="第一发起系统菜单代码" loop=""  tag="Document/CommonRequestHeader/firstsysmemucode"/>
+        <Field name="firstsysmemuname" desc="第一发起系统菜单代码名称" loop=""  tag="Document/CommonRequestHeader/firstsysmemuname"/>
+        <Field name="firstsysdate" desc="第一发起系统的日期" loop=""  tag="Document/CommonRequestHeader/firstsysdate"/>
+        <Field name="firstsystime" desc="第一发起系统的时间" loop=""  tag="Document/CommonRequestHeader/firstsystime"/>
+        <Field name="firstsysseq" desc="第一发起系统的流水号" loop=""  tag="Document/CommonRequestHeader/firstsysseq"/>
+        <Field name="requesttrancode" desc="交易发起方交易代码" loop=""  tag="Document/CommonRequestHeader/requesttrancode"/>
+        <Field name="requestseq" desc="本交易请求流水号" loop=""  tag="Document/CommonRequestHeader/requestseq"/>
+        <Field name="xmlplatformnbr" desc="平台编号" loop=""  tag="Document/CommonRequestHeader/xmlplatformnbr"/>
+        <Field name="brno" desc="机构码: 发起请求的机构" loop=""  tag="Document/CommonRequestHeader/brno"/>
+        <Field name="tellerno" desc="柜员号: 发起请求的柜员" loop=""  tag="Document/CommonRequestHeader/tellerno"/>
+        <Field name="authtellerno" desc="授权柜员号: 授权时必输" loop=""  tag="Document/CommonRequestHeader/authtellerno"/>
+        <Field name="reviewtellrno" desc="复核柜员号: 涉及复核时必输" loop=""  tag="Document/CommonRequestHeader/reviewtellrno"/>
+        <Field name="pageflag" desc="分页标识" loop=""  tag="Document/CommonRequestHeader/pageflag"/>
+        <Field name="currpage" desc="当前页码" loop=""  tag="Document/CommonRequestHeader/currpage"/>
+        <Field name="pagenum" desc="每页记录数" loop=""  tag="Document/CommonRequestHeader/pagenum"/>
+        <Field name="smssendyn" desc="是否发送短信Y/N" loop=""  tag="Document/CommonRequestHeader/smssendyn"/>
+        <!--私有域-->
+        <Field name = "exttxnid" desc = "证件类型" loop=""  tag = "Document/Content/exttxnid"/>
+        <Field name = "exttxndate" desc = "证件号" loop=""  tag = "Document/Content/exttxndate"/>
+
+    </Request>
+
+    <!-- 收到的响应 -->
+    <Response>
+        <!--公共报文头-->
+
+        <!--私有域-->
+        <Field name="return" desc="测试返回" loop="list" tag="service/BODY/FileArray/OtptFile"/>
+    </Response>
+</Pack>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Pack>
+    <!--
+        PackCode				通讯报文已有编码
+        Desc					通讯报文描述
+        Target					服务方信息id
+        Encoding				通讯报文编码格式
+        Trace					通讯报文缓存标识
+        Root                    根节点
+     -->
+    <PackCode>CPAY001</PackCode>
+    <Desc>快速放款</Desc>
+    <Target>socket1</Target>
+    <Encoding>UTF-8</Encoding>
+    <LogFlag>true</LogFlag>
+    <Root>service</Root>
+
+    <!-- 报文长度信息 -->
+    <LengthInfo>
+        <!-- 字段信息 -->
+        <!--
+            Enable					是否启用报文长度字段信息
+            InfoLen					报文长度字段长度
+            SelfFlag				长度信息是否包含本身
+            Format					进制：8进制、10进制、16进制
+         -->
+        <Enable>true</Enable>
+        <InfoLen>8</InfoLen>
+        <SelfFlag>false</SelfFlag>
+        <Format>10</Format>
+        <ReturnLen>8</ReturnLen>
+    </LengthInfo>
+    <!-- 发送报文字段信息 -->
+    <Request>
+        <!--公共报文头-->
+        <Field name="Mac" desc="mac值" loop=""  tag="service/SYS_HEAD/Mac"/>
+        <Field name="MsgId" desc="服务消息ID"  loop=""  tag="service/SYS_HEAD/MsgId"/>
+        <Field name="SourceSysId" desc="服务消息ID"  loop=""  tag="service/SYS_HEAD/SourceSysId"/>
+        <Field name="ConsumerId" desc="服务消息ID"  loop=""  tag="service/SYS_HEAD/ConsumerId"/>
+        <Field name="ServiceCode" desc="请求流水号" loop=""  tag="service/SYS_HEAD/ServiceCode"/>
+        <Field name="ServiceScene" desc="请求流水号" loop=""  tag="service/SYS_HEAD/ServiceScene"/>
+        <Field name="ReplyAdr" desc="请求流水号" loop=""  tag="service/SYS_HEAD/ReplyAdr"/>
+        <Field name="ExtendContent" desc="请求流水号" loop=""  tag="service/SYS_HEAD/ExtendContent"/>
+        <Field name="TranDate" desc="交易日期" loop=""  tag="service/APP_HEAD/TranDate"/>
+        <Field name="TranTime" desc="交易时间" loop=""  tag="service/APP_HEAD/TranTime"/>
+        <Field name="TranTellerNo" desc="交易柜员" loop=""  tag="service/APP_HEAD/TranTellerNo"/>
+        <Field name="TranSeqNo" desc="交易流水号" loop=""  tag="service/APP_HEAD/TranSeqNo"/>
+        <Field name="GlobalSeqNo" desc="全局流水号" loop=""  tag="service/APP_HEAD/GlobalSeqNo"/>
+        <Field name="AuthrTellerNo" desc="授权柜员" loop=""  tag="service/APP_HEAD/AuthrTellerNo"/>
+        <Field name="AuthrPwd" desc="授权密码" loop=""  tag="service/APP_HEAD/AuthrPwd"/>
+        <!--私有域-->
+        <Field name = "CstNm" desc = "客户名称" loop=""  tag = "service/BODY/CstNm"/>
+        <Field name = "IdntTp" desc = "证件类型" loop=""  tag = "service/BODY/IdntTp"/>
+        <Field name = "IdentNo" desc = "证件号码" loop=""  tag = "service/BODY/IdentNo"/>
+        <Field name = "SumchkInd" desc = "是否完整性校验" loop=""  tag = "service/BODY/SumchkInd"/>
+        <Field name = "CstMgrNo" desc = "客户经理编号" loop=""  tag = "service/BODY/CstMgrNo"/>
+        <Field name = "CstMgrInstNo" desc = "客户经理机构号" loop=""  tag = "service/BODY/CstMgrInstNo"/>
+        <Field name = "CrCstNo" desc = "信贷客户号" loop=""  tag = "service/BODY/CrCstNo"/>
+        <Field name = "CrExnCstFlg" desc = "授信客户标识" loop=""  tag = "service/BODY/CrExnCstFlg"/>
+        <Field name = "ThrdPartyCstFlg" desc = "第三方客户标识" loop=""  tag = "service/BODY/ThrdPartyCstFlg"/>
+        <Field name = "ThrdPartyCstTp" desc = "第三方客户类型" loop=""  tag = "service/BODY/ThrdPartyCstTp"/>
+        <Field name = "GndInd" desc = "性别" loop=""  tag = "service/BODY/GndInd"/>
+        <Field name = "BirthDate" desc = "出生日期" loop=""  tag = "service/BODY/BirthDate"/>
+        <Field name = "IdentExpDt" desc = "出生日期" loop=""  tag = "service/BODY/IdentExpDt"/>
+        <Field name = "NtntyCd" desc = "国籍代码" loop=""  tag = "service/BODY/NtntyCd"/>
+        <Field name = "Nation" desc = "民族" loop=""  tag = "service/BODY/Nation"/>
+        <Field name = "MarriageCd" desc = "婚姻状况" loop=""  tag = "service/BODY/MarriageCd"/>
+        <Field name = "FrmrFlg" desc = "农户标识" loop=""  tag = "service/BODY/FrmrFlg"/>
+        <Field name = "HshdRgstKnd" desc = "户籍性质" loop=""  tag = "service/BODY/HshdRgstKnd"/>
+        <Field name = "DomcLo" desc = "户籍所在地" loop=""  tag = "service/BODY/DomcLo"/>
+        <Field name = "LclPolcStnNm" desc = "街道派出所名称" loop=""  tag = "service/BODY/LclPolcStnNm"/>
+        <Field name = "HighEdct" desc = "最高学历" loop=""  tag = "service/BODY/HighEdct"/>
+        <Field name = "DgrCd" desc = "最高学位" loop=""  tag = "service/BODY/DgrCd"/>
+        <Field name = "OcpCd" desc = "职业代码" loop=""  tag = "service/BODY/OcpCd"/>
+        <Field name = "PosTtlCd" desc = "职称代码" loop=""  tag = "service/BODY/PosTtlCd"/>
+        <Field name = "PosCd" desc = "职务代码" loop=""  tag = "service/BODY/PosCd"/>
+        <Field name = "HltSt" desc = "健康状况" loop=""  tag = "service/BODY/HltSt"/>
+        <Field name = "PstKnd" desc = "岗位性质" loop=""  tag = "service/BODY/PstKnd"/>
+        <Field name = "CorpNm" desc = "工作单位" loop=""  tag = "service/BODY/CorpNm"/>
+        <Field name = "OffcTel" desc = "办公电话" loop=""  tag = "service/BODY/OffcTel"/>
+        <Field name = "CoWrkTrm" desc = "现单位工作年限" loop=""  tag = "service/BODY/CoWrkTrm"/>
+        <Field name = "FamPpnNum" desc = "家庭人口" loop=""  tag = "service/BODY/FamPpnNum"/>
+        <Field name = "FamAdr" desc = "家庭住址" loop=""  tag = "service/BODY/FamAdr"/>
+        <Field name = "HsTp" desc = "住宅类型" loop=""  tag = "service/BODY/HsTp"/>
+        <Field name = "MblNo" desc = "移动号码" loop=""  tag = "service/BODY/MblNo"/>
+        <Field name = "IdyInvlCd" desc = "所属行业代码" loop=""  tag = "service/BODY/IdyInvlCd"/>
+        <Field name = "ImgTplCd" desc = "影像模板代码" loop=""  tag = "service/BODY/ImgTplCd"/>
+        <Field name = "ImgBsnNo" desc = "影像批次号" loop=""  tag = "service/BODY/ImgBsnNo"/>
+        <Field name = "RltPrsnNm" desc = "关系人名称" loop="RltPrsnInfArray"  tag = "service/BODY/RltPrsnInfArray/RltPrsnNm"/>
+        <Field name = "CstTp" desc = "客户类型" loop="RltPrsnInfArray"  tag = "service/BODY/RltPrsnInfArray/CstTp"/>
+        <Field name = "IdntTp" desc = "证件类型" loop="RltPrsnInfArray"  tag = "service/BODY/RltPrsnInfArray/IdntTp"/>
+        <Field name = "IdentNo" desc = "证件号码" loop="RltPrsnInfArray"  tag = "service/BODY/RltPrsnInfArray/IdentNo"/>
+        <Field name = "RltnpTp" desc = "关联关系" loop="RltPrsnInfArray"  tag = "service/BODY/RltPrsnInfArray/RltnpTp"/>
+        <Field name = "Rmk" desc = "备注" loop="RltPrsnInfArray"  tag = "service/BODY/RltPrsnInfArray/Rmk"/>
+        <Field name = "AplyAmt" desc = "申请金额" loop="RltPrsnInfArray"  tag = "service/BODY/RltPrsnInfArray/AplyAmt"/>
+        <Field name = "SrcNm" desc = "记录来源" loop="CrInfArray"  tag = "service/BODY/CrInfArray/SrcNm"/>
+        <Field name = "QryDt" desc = "查询日期" loop="CrInfArray"  tag = "service/BODY/CrInfArray/QryDt"/>
+        <Field name = "CrCardCtnsOdueTms" desc = "贷记卡及准贷记卡连续逾期次数" loop="CrInfArray"  tag = "service/BODY/CrInfArray/CrCardCtnsOdueTms"/>
+        <Field name = "CrCardAcmOdueTms" desc = "贷记卡及准贷记卡累计逾期次数" loop="CrInfArray"  tag = "service/BODY/CrInfArray/CrCardAcmOdueTms"/>
+        <Field name = "LoanCtnsOdueTms" desc = "贷款连续欠息次数" loop="CrInfArray"  tag = "service/BODY/CrInfArray/LoanCtnsOdueTms"/>
+        <Field name = "LoanAcmOdueTms" desc = "贷款累计欠息次数" loop="CrInfArray"  tag = "service/BODY/CrInfArray/LoanAcmOdueTms"/>
+        <Field name = "CrExnPnpOdueDsc" desc = "授信本金逾期情况" loop="CrInfArray"  tag = "service/BODY/CrInfArray/CrExnPnpOdueDsc"/>
+        <Field name = "CtrNo" desc = "合同号" loop=""  tag = "service/BODY/CtrNo"/>
+        <Field name = "CoprBsnNo" desc = "合作方业务编号" loop=""  tag = "service/BODY/CoprBsnNo"/>
+        <Field name = "BsnTp" desc = "业务类型" loop=""  tag = "service/BODY/BsnTp"/>
+        <Field name = "CtrAmt" desc = "合同金额" loop=""  tag = "service/BODY/CtrAmt"/>
+        <Field name = "CtrIttDt" desc = "合同起始日期" loop=""  tag = "service/BODY/CtrIttDt"/>
+        <Field name = "CtrExpDt" desc = "合同到期日" loop=""  tag = "service/BODY/CtrExpDt"/>
+        <Field name = "DbtAmt" desc = "借据金额" loop=""  tag = "service/BODY/DbtAmt"/>
+        <Field name = "DbtExpDt" desc = "借据到期日" loop=""  tag = "service/BODY/DbtExpDt"/>
+        <Field name = "LoanPpsDsc" desc = "贷款用途说明" loop=""  tag = "service/BODY/LoanPpsDsc"/>
+        <Field name = "IntRate" desc = "执行利率" loop=""  tag = "service/BODY/IntRate"/>
+        <Field name = "IntSetlMth" desc = "结息方式" loop=""  tag = "service/BODY/IntSetlMth"/>
+        <Field name = "LndCardPsbkFlag" desc = "放款卡折标识" loop=""  tag = "service/BODY/LndCardPsbkFlag"/>
+        <Field name = "LndOpenAcctBnkNo" desc = "放款开户行行号" loop=""  tag = "service/BODY/LndOpenAcctBnkNo"/>
+        <Field name = "LndOpenAcctBnkNm" desc = "放款开户行行名" loop=""  tag = "service/BODY/LndOpenAcctBnkNm"/>
+        <Field name = "LndAcctNo" desc = "放款账号" loop=""  tag = "service/BODY/LndAcctNo"/>
+        <Field name = "LndAcctNm" desc = "放款账户名称" loop=""  tag = "service/BODY/LndAcctNm"/>
+        <Field name = "RpymntCardPsbkFlag" desc = "还款卡折标识" loop=""  tag = "service/BODY/RpymntCardPsbkFlag"/>
+        <Field name = "RpymntOpenAcctBnkNo" desc = "还款开户行行号" loop=""  tag = "service/BODY/RpymntOpenAcctBnkNo"/>
+        <Field name = "RpymntOpenAcctBnkNm" desc = "还款开户行行名" loop=""  tag = "service/BODY/RpymntOpenAcctBnkNm"/>
+        <Field name = "RepymtAcctNo" desc = "还款账号" loop=""  tag = "service/BODY/RepymtAcctNo"/>
+        <Field name = "RepymtAcctNm" desc = "还款账户名称" loop=""  tag = "service/BODY/RepymtAcctNm"/>
+        <Field name = "SplmtInf" desc = "附属信息" loop=""  tag = "service/BODY/SplmtInf"/>
+        <Field name = "RepymtMth" desc = "还款方式" loop=""  tag = "service/BODY/RepymtMth"/>
+
+    </Request>
+
+    <!-- 收到的响应 -->
+    <Response>
+        <!--公共报文头-->
+
+        <!--私有域-->
+        <Field name="return" desc="测试返回" loop="list" tag="service/BODY/FileArray/OtptFile"/>
+    </Response>
+</Pack>

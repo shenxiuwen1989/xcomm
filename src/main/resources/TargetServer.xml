@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<TargetServer>
+	<Server>
+		<!-- 通讯目标服务器字段说明 -->
+		<!-- 
+			id					通讯目标服务器编号，不允许重复
+			type				通讯目标服务器类型，允许填socket，cics，mq
+			desc				通讯目标服务器描述
+			host				socket目标服务器
+			port				socket目标服务器监听端口
+			connecttimeout		通讯连接超时时间，单位为毫秒
+			connecttrytime		通讯连接重试次数
+			transtimeout		通讯响应超时时间，单位为毫秒
+			countonnomsg		通讯返回完毕计数，默认为5
+		 -->
+		<id>socket1</id>
+	    <type>socket</type>
+	    <desc>ESB信贷</desc>
+	    <host>172.20.12.235</host>
+	    <!--<port>7038</port>-->
+	    <port>7077</port>
+		<transtimeout>10000</transtimeout>
+	    <connecttrytime>3</connecttrytime>
+		<connecttimeout>60000</connecttimeout>
+	    <countonnomsg>1000</countonnomsg>
+	</Server>
+
+	<Server>
+		<!-- 通讯目标服务器字段说明 -->
+		<!--
+			id					通讯目标服务器编号，不允许重复
+			type				通讯目标服务器类型，允许填socket，cics，mq
+			desc				通讯目标服务器描述
+			host				socket目标服务器
+			port				socket目标服务器监听端口
+			connecttimeout		通讯连接超时时间，单位为毫秒
+			connecttrytime		通讯连接重试次数
+			transtimeout		通讯响应超时时间，单位为毫秒
+			countonnomsg		通讯返回完毕计数，默认为5
+		 -->
+		<id>socket2</id>
+		<type>socket</type>
+		<desc>电子账户core</desc>
+		<host>10.15.12.92</host>
+		<port>18000</port>
+		<transtimeout>10000</transtimeout>
+		<connecttrytime>3</connecttrytime>
+		<connecttimeout>60000</connecttimeout>
+		<countonnomsg>300</countonnomsg>
+	</Server>
+
+	<Server>
+		<id>socket3</id>
+		<type>socket</type>
+		<desc>电子账户pay</desc>
+		<host>10.15.12.91</host>
+		<port>18001</port>
+		<transtimeout>10000</transtimeout>
+		<connecttrytime>3</connecttrytime>
+		<connecttimeout>60000</connecttimeout>
+		<countonnomsg>300</countonnomsg>
+	</Server>
+</TargetServer>

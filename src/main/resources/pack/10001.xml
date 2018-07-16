@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Pack>
+    <!--
+        PackCode				通讯报文已有编码
+        Desc					通讯报文描述
+        Target					服务方信息id
+        Encoding				通讯报文编码格式
+        Trace					通讯报文缓存标识
+        Root                    根节点
+     -->
+    <PackCode>10001</PackCode>
+    <Desc>信用卡信息查询</Desc>
+    <Target>socket1</Target>
+    <Encoding>GBK</Encoding>
+    <LogFlag>true</LogFlag>
+    <Root>service</Root>
+
+    <!-- 报文长度信息 -->
+    <LengthInfo>
+        <!-- 字段信息 -->
+        <!--
+            Enable					是否启用报文长度字段信息
+            InfoLen					报文长度字段长度
+            SelfFlag				长度信息是否包含本身
+            Format					进制：8进制、10进制、16进制
+            ReturnLen               返回报文头部长度字段，没有填0
+         -->
+        <Enable>true</Enable>
+        <InfoLen>8</InfoLen>
+        <SelfFlag>false</SelfFlag>
+        <Format>10</Format>
+        <ReturnLen>8</ReturnLen>
+    </LengthInfo>
+
+    <!--定长部分字段-->
+    <Constant>
+        <Str name="test1" desc="测试定常字段1" len="8" sub=" "/>
+        <Str name="test2" desc="测试定常字段2" len="12" sub=" "/>
+    </Constant>
+
+    <!-- 发送报文字段信息 -->
+    <Request>
+        <!--公共报文头-->
+        <Field name="Mac" desc="mac值" loop="" tag="service/SYS_HEAD/Mac"/>
+        <Field name="TargetSysId" desc="服务消息ID"  loop=""  tag="service/SYS_HEAD/TargetSysId"/>
+        <Field name="MsgId" desc="服务消息ID"  loop=""  tag="service/SYS_HEAD/MsgId"/>
+        <Field name="ServiceCode" desc="请求流水号" loop=""  tag="service/SYS_HEAD/ServiceCode"/>
+        <Field name="ReturnMsg" desc="返回信息" loop=""  tag="service/APP_HEAD/ReturnMsg"/>
+        <Field name="TranDate" desc="交易日期" loop=""  tag="service/APP_HEAD/TranDate"/>
+        <Field name="TranTime" desc="交易时间" loop=""  tag="service/APP_HEAD/TranTime"/>
+        <Field name="GlobalSeqNo" desc="全局流水号" loop=""  tag="service/APP_HEAD/GlobalSeqNo"/>
+        <!--私有域-->
+        <Field name="ip" desc="测试上送"  loop="list"  tag="service/BODY/LIST/IdntTp"/>
+        <Field name="host" desc="测试上送"  loop="list"  tag="service/BODY/LIST/Host"/>
+    </Request>
+
+    <!-- 收到的响应 -->
+    <Response>
+        <!--公共报文头-->
+        <Field name="Mac" desc="mac值" loop="" tag="service/SYS_HEAD/Mac"/>
+        <Field name="TargetSysId" desc="服务消息ID" loop="" tag="service/SYS_HEAD/TargetSysId"/>
+        <Field name="MsgId" desc="返回码" loop="" tag="service/SYS_HEAD/MsgId"/>
+        <Field name="ReturnCode" desc="返回码" loop="" tag="service/APP_HEAD/ReturnCode"/>
+        <Field name="ReturnMsg" desc="返回码" loop="" tag="service/APP_HEAD/ReturnMsg"/>
+        <Field name="TranDate" desc="返回码" loop="" tag="service/APP_HEAD/TranDate"/>
+        <Field name="TranTime" desc="返回码" loop="" tag="service/APP_HEAD/TranTime"/>
+        <Field name="GlobalSeqNo" desc="返回码" loop="" tag="service/APP_HEAD/GlobalSeqNo"/>
+        <!--私有域-->
+        <Field name="return" desc="测试返回" loop="list" tag="service/BODY/FileArray/OtptFile"/>
+    </Response>
+</Pack>

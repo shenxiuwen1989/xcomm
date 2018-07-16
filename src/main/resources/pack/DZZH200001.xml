@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Pack>
+    <!--
+        PackCode				通讯报文已有编码
+        Desc					通讯报文描述
+        Target					服务方信息id
+        Encoding				通讯报文编码格式
+        Trace					通讯报文缓存标识
+        Root                    根节点
+     -->
+    <PackCode>200001</PackCode>
+    <Desc>开立电子账户个人</Desc>
+    <Target>socket2</Target>
+    <Encoding>GBK</Encoding>
+    <LogFlag>true</LogFlag>
+    <Root>Document</Root>
+
+    <!-- 报文长度信息 -->
+    <LengthInfo>
+        <!-- 字段信息 -->
+        <!--
+            Enable					是否启用报文长度字段信息
+            InfoLen					报文长度字段长度
+            SelfFlag				长度信息是否包含本身
+            Format					进制：8进制、10进制、16进制
+         -->
+        <Enable>true</Enable>
+        <InfoLen>8</InfoLen>
+        <SelfFlag>false</SelfFlag>
+        <Format>10</Format>
+        <ReturnLen>111</ReturnLen>
+    </LengthInfo>
+
+    <!--定长部分字段-->
+    <Constant>
+        <Str name="xmlVer" desc="版本号" len="2" sub=" "/>
+        <Str name="requestsysid" desc="请求方系统简称 " len="4" sub=" "/>
+        <Str name="servicesysid" desc="服务方系统简称" len="4" sub=" "/>
+        <Str name="trancode" desc="服务代码" len="10" sub=" "/>
+        <Str name="msgSendDate" desc="报文发起日期" len="8" sub=" "/>
+        <Str name="msgSendTime" desc="报文发起时间" len="6" sub=" "/>
+        <Str name="msgId" desc="报文消息ID" len="22" sub=" "/>
+        <Str name="msgRefId" desc="报文消息参考号" len="22" sub=" "/>
+        <Str name="direction" desc="报文方向" len="1" sub=" "/>
+        <Str name="reserve" desc="（保留域）" len="20" sub=" "/>
+    </Constant>
+
+    <!-- 发送报文字段信息 -->
+    <Request>
+        <!--公共报文头-->
+        <Field name="firstsysname" desc="第一发起系统的系统简称" loop=""  tag="Document/CommonRequestHeader/firstsysname"/>
+        <Field name="firstsysmemucode" desc="第一发起系统菜单代码" loop=""  tag="Document/CommonRequestHeader/firstsysmemucode"/>
+        <Field name="firstsysmemuname" desc="第一发起系统菜单代码名称" loop=""  tag="Document/CommonRequestHeader/firstsysmemuname"/>
+        <Field name="firstsysdate" desc="第一发起系统的日期" loop=""  tag="Document/CommonRequestHeader/firstsysdate"/>
+        <Field name="firstsystime" desc="第一发起系统的时间" loop=""  tag="Document/CommonRequestHeader/firstsystime"/>
+        <Field name="firstsysseq" desc="第一发起系统的流水号" loop=""  tag="Document/CommonRequestHeader/firstsysseq"/>
+        <Field name="requesttrancode" desc="交易发起方交易代码" loop=""  tag="Document/CommonRequestHeader/requesttrancode"/>
+        <Field name="requestseq" desc="本交易请求流水号" loop=""  tag="Document/CommonRequestHeader/requestseq"/>
+        <Field name="brno" desc="机构码: 发起请求的机构" loop=""  tag="Document/CommonRequestHeader/brno"/>
+        <Field name="tellerno" desc="柜员号: 发起请求的柜员" loop=""  tag="Document/CommonRequestHeader/tellerno"/>
+        <Field name="authtellerno" desc="授权柜员号: 授权时必输" loop=""  tag="Document/CommonRequestHeader/authtellerno"/>
+        <Field name="reviewtellrno" desc="复核柜员号: 涉及复核时必输" loop=""  tag="Document/CommonRequestHeader/reviewtellrno"/>
+        <Field name="pageflag" desc="分页标识" loop=""  tag="Document/CommonRequestHeader/pageflag"/>
+        <Field name="currpage" desc="当前页码" loop=""  tag="Document/CommonRequestHeader/currpage"/>
+        <Field name="pagenum" desc="每页记录数" loop=""  tag="Document/CommonRequestHeader/pagenum"/>
+        <Field name="smssendyn" desc="是否发送短信Y/N" loop=""  tag="Document/CommonRequestHeader/smssendyn"/>
+        <!--私有域-->
+        <Field name = "custidnbr" desc = "证件号码" loop=""  tag = "Document/Content/custidnbr"/>
+        <Field name = "custidtyp" desc = "证件类型" loop=""  tag = "Document/Content/custidtyp"/>
+        <Field name = "customerid" desc = "客户号" loop=""  tag = "Document/Content/customerid"/>
+        <Field name = "customname" desc = "客户名称 " loop=""  tag = "Document/Content/customname"/>
+        <Field name = "custphone" desc = "电话号码" loop=""  tag = "Document/Content/custphone"/>
+        <Field name = "medipwd" desc = "电子账号交易密码" loop=""  tag = "Document/Content/medipwd"/>
+        <Field name = "acctlev" desc = "电子账户级别" loop=""  tag = "Document/Content/acctlev"/>
+        <Field name = "relcardnbr" desc = "绑定卡号" loop=""  tag = "Document/Content/relcardnbr"/>
+        <Field name = "cardagreementtypcd" desc = "电子账户卡类型" loop=""  tag = "Document/Content/cardagreementtypcd"/>
+        <Field name = "innerflag" desc = "本行他行标志" loop=""  tag = "Document/Content/innerflag"/>
+        <Field name = "mediavailyn" desc = "认证状态变更" loop=""  tag = "Document/Content/mediavailyn"/>
+        <Field name = "medistatcd" desc = "激活状态变更" loop=""  tag = "Document/Content/medistatcd"/>
+        <Field name = "mjaccttypcd" desc = "产品大类" loop=""  tag = "Document/Content/mjaccttypcd"/>
+        <Field name = "miaccttypcd" desc = "产品小类" loop=""  tag = "Document/Content/miaccttypcd"/>
+        <Field name = "fzdqmc" desc = "发展地区名称" loop=""  tag = "Document/Content/fzdqmc"/>
+        <Field name = "expiredate" desc = "证件失效日期" loop=""  tag = "Document/Content/expiredate"/>
+        <Field name = "xmlplatformnbr" desc = "证件失效日期" loop=""  tag = "Document/Content/xmlplatformnbr"/>
+        <!--<Field name = "ntwrkchkyn" desc = "是否核查" loop=""  tag = "Document/Content/ntwrkchkyn"/>
+        <Field name = "chkanswercd" desc = "核查应答代码" loop=""  tag = "Document/Content/chkanswercd"/>
+        <Field name = "chkanswerdesc" desc = "核查应答描述" loop=""  tag = "Document/Content/chkanswerdesc"/>-->
+
+    </Request>
+
+    <!-- 收到的响应 -->
+    <Response>
+        <!--公共报文头-->
+
+        <!--私有域-->
+        <Field name="return" desc="测试返回" loop="list" tag="service/BODY/FileArray/OtptFile"/>
+    </Response>
+</Pack>
